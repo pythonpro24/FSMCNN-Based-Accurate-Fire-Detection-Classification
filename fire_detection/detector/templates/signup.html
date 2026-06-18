@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        /* Modern Reset */
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        
+        body { 
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; 
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+
+        /* The Card */
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 45px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            width: 100%;
+            max-width: 420px; 
+            text-align: center; 
+        }
+
+        h2 { 
+            color: #2c3e50; 
+            margin-bottom: 10px; 
+            font-size: 30px; 
+            font-weight: 800;
+        }
+
+        p.subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* Input Styling */
+        input { 
+            width: 100%; 
+            padding: 14px 18px; 
+            margin: 10px 0; 
+            border: 2px solid #f1f1f1; 
+            border-radius: 12px; 
+            font-size: 15px;
+            outline: none;
+            background: #fdfdfd;
+        }
+
+        input:focus { 
+            border-color: #f08cf0; 
+            background: #fff;
+            box-shadow: 0 0 10px rgba(56, 239, 125, 0.15);
+        }
+
+        /* The Button */
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            margin-top: 25px;
+            background: linear-gradient(to right, #c1ecb8, #38ef7d); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+        }
+
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(17, 153, 142, 0.4);
+            filter: brightness(1.05);
+        }
+
+        button:active { transform: translateY(0); }
+
+        /* Footer */
+        .footer-text { margin-top: 25px; color: #555; font-size: 14px; }
+        .footer-text a { 
+            color: #5175d6; 
+            text-decoration: none; 
+            font-weight: 700; 
+        }
+        .footer-text a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Join Us</h2>
+        <p class="subtitle">Create an account to get started</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Choose a Username" required>
+            <input type="password" name="password" placeholder="Create Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            
+            <button type="submit">Create Account</button>
+        </form>
+        
+        <p class="footer-text">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - FSMCNN Fire Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-fire: #f5c2b9;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            justify-content: right;
+            gap: 30px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+
+        nav a:hover {
+            color: var(--primary-fire);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 800px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Glass Card for Features */
+        .features {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 200px;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            background: var(--primary-fire);
+            color: rgb(255, 252, 252);
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(255, 75, 43, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px #cff0c080;
+            background: #ff3b1b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgb(234, 237, 238);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #f0a4ec;
+            color: #764ba2;
+            box-shadow: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            padding: 40px;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+    </nav>
+
+    <div class="hero">
+        <h1>FSMCNN-Based Accurate Fire Detection Using a Self-Modulative Convolutional Neural Network </h1>
+        <p>Harnessing the power of Self-Modulative Convolutional Neural Networks to provide real-time, high-precision fire identification.</p>
+        
+        <div class="btn-group">
+            <a href="{% url 'signup' %}" class="btn">Get Started</a>
+            <a href="{% url 'login' %}" class="btn btn-outline">Sign In</a>
+        </div>
+
+        <div class="features">
+            <div class="feature-box">
+                <div style="font-size: 30px;">⚡</div>
+                <h3>Real-Time</h3>
+                <p style="font-size: 13px;">Instant processing and detection results.</p>
+            </div>
+            <div class="feature-box">
+                <div style="font-size: 30px;">🎯</div>
+                <h3>99% Accuracy</h3>
+                <p style="font-size: 13px;">Optimized FSMCNN architecture.</p>
+            </div>
+            <div class="feature-box">
+                <div style="font-size: 30px;">🛡️</div>
+                <h3>Reliable</h3>
+                <p style="font-size: 13px;">Self-modulative layers for noise reduction.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 FSMCNN Fire Detection System. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

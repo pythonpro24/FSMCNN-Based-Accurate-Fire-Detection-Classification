@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-fire: #ff4b2b;
+        --primary-safe: #2ecc71;
+        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --glass-bg: rgba(255, 255, 255, 0.95);
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-gradient);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #2d3436;
+    }
+
+/* Navigation Bar */
+nav {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
+    display: flex;
+    /* This pushes the content to the far right */
+    justify-content: flex-end; 
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+    opacity: 0.8;
+    /* Spacing between the links */
+    margin-right: 30px; 
+}
+
+nav a:last-child {
+    margin-right: 50px;
+}
+nav a:hover {
+    opacity: 1;
+    color: var(--primary-fire);
+}
+    .main-title {
+        margin: 20px auto 40px auto;
+        color: white;
+        font-size: 32px;
+        font-weight: 800;
+        text-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        letter-spacing: -0.5px;
+        text-align: center;
+        max-width: 900px;
+        padding: 0 20px;
+    }
+
+    .container {
+        background: var(--glass-bg);
+        padding: 50px;
+        border-radius: 32px;
+        width: 90%;
+        max-width: 550px;
+        text-align: center;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        transition: transform 0.3s ease;
+        margin-bottom: 40px;
+    }
+
+    .container:hover {
+        transform: translateY(-5px);
+    }
+
+    .file-upload-wrapper {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    input[type="file"] {
+        padding: 30px 15px;
+        border: 3px dashed #cbd5e0;
+        border-radius: 18px;
+        width: 100%;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 16px;
+        background: #2d3436;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+        background: var(--primary-fire);
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(255, 75, 43, 0.4);
+    }
+
+    .image-preview-card {
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 2px solid #eee;
+        animation: fadeIn 0.5s ease;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .result {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 18px;
+        font-size: 26px;
+        font-weight: 800;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+    }
+
+    .fire { color: var(--primary-fire); text-transform: uppercase; }
+    .nofire { color: var(--primary-safe); text-transform: uppercase; }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}">HOME</a>
+        <a href="{% url 'index' %}" style="color: var(--primary-fire);">DETECTOR</a>
+        <a href="{% url 'login' %}">LOGIN</a>
+        <a href="{% url 'signup' %}">SIGNUP</a>
+    </nav>
+
+    <h1 class="main-title">Fire Detection system using FSMCNN</h1>
+
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="file-upload-wrapper">
+                <input type="file" name="image" required>
+            </div>
+            <button type="submit">Run Prediction</button>
+        </form>
+
+        {% if image_url %}
+        <div class="image-preview-card">
+            <img src="{{ image_url }}" alt="Analyzed Image">
+            <div class="result">
+                Prediction: 
+                <span class="{% if label == 'Fire' %}fire{% else %}nofire{% endif %}">
+                    {{ label }}
+                </span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
