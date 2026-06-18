@@ -1,5 +1,5 @@
 # FSMCNN-Based-Accurate-Fire-Detection-Classification
-FSMCNN-based fire detection system using a Self-Modulative Convolutional Neural Network with image preprocessing, augmentation, classification, performance evaluation, and real-time fire prediction.
+FSMCNN-based fire detection system using a Self-Modulative Convolutional Neural Network with image preprocessing, classification, performance evaluation, and real-time fire prediction.
 A deep learning-based fire detection system using a Self-Modulative Convolutional Neural Network (FSMCNN) for classifying Fire and Non-Fire images.
 
 ## Dataset
@@ -19,10 +19,9 @@ Classes:
    * RGB Conversion
    * Resize (128×128)
    * Normalization
-3. Data Augmentation
-4. FSMCNN Model Training
-5. Model Evaluation
-6. Fire Prediction
+3. FSMCNN Model Training
+4. Model Evaluation
+5. Fire Prediction
 
 ## Model Architecture
 
